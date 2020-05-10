@@ -20,13 +20,13 @@ import { mainListItems, secondaryListItems } from './listItems';
 
 import { Route, Switch } from "react-router-dom";
 
-import Home from "../../containers/Home";
-import Dashboard from "../../containers/Dashboard";
-import Rewards from "../../containers/Rewards";
-import Banks from "../../containers/Banks";
-import Users from "../../containers/Users";
-import Setting from "../../containers/Setting";
-import CreditCards from "../../containers/CreditCards";
+import Home from "../../containers/Home/Home";
+import Dashboard from "../../containers/Dashboard/Dashboard";
+import Rewards from "../../containers/Rewards/Rewards";
+import Banks from "../../containers/Banks/Banks";
+import Users from "../../containers/Users/Users";
+import Setting from "../../containers/Setting/Setting";
+import CreditCards from "../../containers/CreditCards/CreditCards";
 import SignIn from "../../containers/sign-up-in/SignIn";
 import SignUp from "../../containers/sign-up-in/SignUp";
 

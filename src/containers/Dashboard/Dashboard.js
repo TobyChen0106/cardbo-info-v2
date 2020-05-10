@@ -6,9 +6,9 @@ import ReactDOM from "react-dom";
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Chart from '../components/DashboardRouter/Chart';
-import Deposits from '../components/DashboardRouter/Deposits';
-import Orders from '../components/DashboardRouter/Orders';
+import Chart from '../../components/DashboardRouter/Chart';
+import Deposits from '../../components/DashboardRouter/Deposits';
+import Orders from '../../components/DashboardRouter/Orders';
 import clsx from 'clsx';
 
 const drawerWidth = 240;
