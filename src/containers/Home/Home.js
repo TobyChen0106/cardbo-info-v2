@@ -47,6 +47,7 @@ function Home() {
                             <FacebookIcon style={{ color: "#4267b2" }} />
                         </IconButton>
                     </label>
+                    
                     <label htmlFor="icon-button-file">
                         <IconButton href="https://www.instagram.com/mrcardbo/" target="_blank" color="primary" >
                             <InstagramIcon style={{ color: "#b22cbb" }} />

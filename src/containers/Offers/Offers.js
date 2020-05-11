@@ -124,7 +124,6 @@ class Offers extends Component {
             ],
             loading: true,
         }
-
     }
     componentDidMount() {
         fetch('/api/all-offer-list').catch(function (error) {
@@ -161,13 +160,11 @@ class Offers extends Component {
                     cardID={i.cardID}
                     cardName={i.cardName}
                     expiration={i.expiration}
-
                     offerAbstract={i.offerAbstract}
                     category={i.category}
                     tags={i.tags}
                     numSearch={i.numSearch}
                     reward={i.reward}
-                    category={i.category}
                     reward={i.reward}
                     constraint={i.constraint}
                 />
