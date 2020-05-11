@@ -4,24 +4,24 @@ const Schema = mongoose.Schema
 const StoreSchema = new Schema({
     storeName: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    age: {
+    categories: {                    // Top hierarchy: 交通、食宿、國內一般消費  
+        type: [String]
+    },
+    tags: {                          // second hierarchy: 航空、停車、旅遊、現金回饋
+        type: [String]
+    },
+    imageLink: {
+        type: String
+    },
+    websiteLink: {
+        type: String
+    },
+    numSearch: {
         type: Number,
-        required: true
-    },
-    gender: {
-        type: String,
-        required: true
-    },
-    progress: {
-        type: Number,
-        default: 0,
-        required: true
-    },
-    note: {
-        type: Schema.Types.Mixed,
-        required: true
+        default: 0
     }
 });
 

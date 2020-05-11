@@ -38,12 +38,12 @@ export const mainListItems = (
       </ListItem>
     </Link>
 
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/Rewards">
+    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/Offers">
       <ListItem button>
         <ListItemIcon>
           <ShoppingBasketIcon />
         </ListItemIcon>
-        <ListItemText primary="Rewards" />
+        <ListItemText primary="Offers" />
       </ListItem>
     </Link>
 

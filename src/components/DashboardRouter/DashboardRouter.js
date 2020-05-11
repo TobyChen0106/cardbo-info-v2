@@ -8,11 +8,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -22,7 +23,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Home from "../../containers/Home/Home";
 import Dashboard from "../../containers/Dashboard/Dashboard";
-import Rewards from "../../containers/Rewards/Rewards";
+import Offers from "../../containers/Offers/Offers";
 import Banks from "../../containers/Banks/Banks";
 import Users from "../../containers/Users/Users";
 import Setting from "../../containers/Setting/Setting";
@@ -192,7 +193,7 @@ export default function DashboardRouter() {
           <Switch>
             <Route exact={true} path="/" component={Home} />
             <Route exact={true} path="/Dashboard" component={Dashboard} />
-            <Route exact={true} path="/Rewards" component={Rewards} />
+            <Route exact={true} path="/Offers" component={Offers} />
             <Route exact={true} path="/CreditCards" component={CreditCards} />
             <Route exact={true} path="/Banks" component={Banks} />
             <Route exact={true} path="/Users" component={Users} />

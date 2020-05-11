@@ -14,8 +14,9 @@ export default class App extends Component {
       userEmail: cookies.get('cardbo-user-email'),
       userPassword: cookies.get('cardbo-user-password'),
     }
-    console.log(this.state.userEmail);
-    console.log(this.state.userPassword);
+    // console.log(this.state.userEmail);
+    // console.log(this.state.userPassword);
+    
   }
   onSavePassWord = () => {
 
@@ -23,7 +24,7 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <DashboardRouter onSavePassWord={this.onSavePassWord}/>
+        <DashboardRouter onSavePassWord={this.onSavePassWord} />
       </BrowserRouter>
     );
   }
