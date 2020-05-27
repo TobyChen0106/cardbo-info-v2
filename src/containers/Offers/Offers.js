@@ -165,7 +165,6 @@ class Offers extends Component {
                     tags={i.tags}
                     numSearch={i.numSearch}
                     reward={i.reward}
-                    reward={i.reward}
                     constraint={i.constraint}
                 />
                 {/* </NavLink> */}

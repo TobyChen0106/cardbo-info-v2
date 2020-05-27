@@ -27,10 +27,8 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
     const classes = useStyles();
     return (
-
         <div className="container">
             <div className="avatar">
-                {/* <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/751678/skytsunami.png" alt="Skytsunami" /> */}
                 <img src="./logo.png" alt="Skytsunami" />
             </div>
             <div className="content">
@@ -47,7 +45,7 @@ function Home() {
                             <FacebookIcon style={{ color: "#4267b2" }} />
                         </IconButton>
                     </label>
-                    
+
                     <label htmlFor="icon-button-file">
                         <IconButton href="https://www.instagram.com/mrcardbo/" target="_blank" color="primary" >
                             <InstagramIcon style={{ color: "#b22cbb" }} />
@@ -55,12 +53,12 @@ function Home() {
                     </label>
                 </div>
                 <div className="sign-in-up-container">
-                <Link style={{ textDecoration: 'none', color: "#000000", }} to="/signin">
-                    Sign in
+                    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/signin">
+                        Sign in
                 </Link>
-                {`    /    `}
-                <Link style={{ textDecoration: 'none', color: "#000000", }} to="/signup">
-                    Sign up
+                    {`    /    `}
+                    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/signup">
+                        Sign up
                 </Link>
                 </div>
             </div>

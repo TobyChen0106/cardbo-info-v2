@@ -15,6 +15,7 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 
 import MenuIcon from '@material-ui/icons/Menu';
+import EjectIcon from '@material-ui/icons/Eject';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
@@ -49,45 +50,41 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-
-  },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed'
-    backgroundColor: "#0058a3",
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+    position: 'relative',
+    background: '#247cb8'
   },
   menuButton: {
-    marginRight: 36,
+    width: '40px',
+    height: '40px',
+
+    border: "3px solid #247cb8",
+    '&:hover': {
+      backgroundColor: "#0058a3",
+      border: "3px solid #fff",
+    },
+    backgroundColor: "#0058a3",
+    position: "absolute",
+    top: '50%',
+    right: '-20px',
   },
   menuButtonHidden: {
-    display: 'none',
+
+  },
+  iconButton: {
+    transform: 'rotate(90deg)',
+    transition: '1s',
+  },
+  iconButtonHidden: {
+    transform: 'rotate(-90deg)',
   },
   title: {
     flexGrow: 1,
-
   },
   drawerPaper: {
+    '&:hover': {
+      borderRight: "3px solid #fff",
+    },
+    background: "#0058a3",
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -97,15 +94,19 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   drawerPaperClose: {
-    overflowX: 'hidden',
+    background: "#0058a3",
+    // overflow: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(7),
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
+      width: theme.spacing(7),
     },
+  },
+  listItem: {
+    overflow: 'hidden',
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
@@ -131,8 +132,9 @@ const useStyles = makeStyles((theme) => ({
 export default function DashboardRouter() {
   const classes = useStyles();
   const [open, setStaticOpen] = React.useState(false);
+
   const handleDrawerOpen = () => {
-    setStaticOpen(true);
+    setStaticOpen(~open);
   };
   const handleDrawerClose = () => {
     setStaticOpen(false);
@@ -140,55 +142,20 @@ export default function DashboardRouter() {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" align="center" noWrap className={classes.title}>
-            {/* Cardbo */}
-          </Typography>
-          <IconButton color="inherit" component="h1" className={classes.toolbarIcon}>
-            <Badge color="secondary" src="./logo-rect.png">
-              {/* <img src="./logo-rect.png" style={{height:'auto',}}/> */}
-            </Badge>
-          </IconButton>
-
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List >{mainListItems}</List>
-        <Divider />
-        <List >{secondaryListItems}</List>
-      </Drawer>
+      <div className={clsx(classes.drawerPaper, !open && classes.drawerPaperClose)}>
+        <IconButton
+          onClick={handleDrawerOpen}
+          className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+        >
+          <EjectIcon
+            className={clsx(classes.iconButton, open && classes.iconButtonHidden)} />
+        </IconButton>
+        <div />
+        <List className={classes.listItem}>{mainListItems}</List>
+      </div>
 
       <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
+        {/* <div className={classes.appBarSpacer} /> */}
         <Container maxWidth="lg" className={classes.container}>
           <Switch>
             <Route exact={true} path="/" component={Home} />
