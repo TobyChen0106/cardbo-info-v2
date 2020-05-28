@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
 const Card = require('../models/Card');
-const Offer = require('../models/offer');
+const Offer = require('../models/Offer');
 const Store = require('../models/Store');
 
 // router.post('/users', (req, res) => {
