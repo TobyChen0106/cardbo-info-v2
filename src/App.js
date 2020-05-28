@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DashboardRouter from "./components/DashboardRouter/DashboardRouter";
 import { Cookies } from 'react-cookie';
 
@@ -16,7 +16,7 @@ export default class App extends Component {
     }
     // console.log(this.state.userEmail);
     // console.log(this.state.userPassword);
-    
+
   }
   onSavePassWord = () => {
 
@@ -24,6 +24,9 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        {/* <Switch>
+          <Route exact={true} path="/dash" component={DashboardRouter} />
+        </Switch> */}
         <DashboardRouter onSavePassWord={this.onSavePassWord} />
       </BrowserRouter>
     );

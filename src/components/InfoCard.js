@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -19,7 +16,6 @@ import TextField from '@material-ui/core/TextField';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -89,7 +85,10 @@ const useStyles = (theme) => ({
     },
     textArea: {
         width: '90%',
-        fontSize: 20,
+        fontSize: 15,
+        backgroundColor: '#001b30',
+        color: '#FFFFFF',
+        padding: '0.5rem',
     },
     previewArea: {
         width: '40%',
@@ -120,13 +119,25 @@ class InfoCard extends Component {
             offerName: this.props.offerName,
             cardID: this.props.cardID,
             cardName: this.props.cardName,
-            expiration: this.props.expiration,
+            // expiration: this.props.expiration,
+            beginDate: this.props.expiration.beginDate,
+            endDate: this.props.expiration.endDate,
+
             offerAbstract: this.props.offerAbstract,
             category: this.props.category,
             tags: this.props.tags,
             numSearch: this.props.numSearch,
-            reward: this.props.reward,
-            constraint: this.props.constraint,
+            // reward: this.props.reward,
+            timingToOffer: this.props.reward.timingToOffer,
+            limits: this.props.reward.limits,
+            contents: this.props.reward.contents,
+            notes: this.props.reward.notes,
+
+            // constraint: this.props.constraint,
+            userIdentity: this.props.constraint.userIdentity,
+            timingOfConsumption: this.props.constraint.timingOfConsumption,
+            numberOfConsumption: this.props.constraint.numberOfConsumption,
+            type: this.props.constraint.type,
         }
     }
 
@@ -135,18 +146,46 @@ class InfoCard extends Component {
         // setExpanded(!expanded);
     };
 
-    handleChange = (event) => {
-        this.setState({ category: event.target.value })
-    };
+    handleTextareaChange = (changedState) => {
+        this.setState(changedState);
+    }
+    onSave = () => {
+        this.props.onSave(
+            {
+                offerID: this.state.offerID,
+                offerName: this.state.offerName,
+                cardID: this.state.cardID,
+                cardName: this.state.cardName,
+
+                beginDate: this.state.beginDate,
+                endDate: this.state.endDate,
+
+                offerAbstract: this.state.offerAbstract,
+                category: this.state.category,
+                tags: this.state.tags,
+                numSearch: this.state.numSearch,
+
+                contents: this.state.contents,
+                limits: this.state.limits,
+                timingToOffer: this.state.timingToOffer,
+                notes: this.state.notes,
+
+
+                userIdentity: this.state.constraint,
+                timingOfConsumption: this.state.timingOfConsumption,
+                numberOfConsumption: this.state.numberOfConsumption,
+                type: this.state.type,
+
+            }
+        );
+    }
     render() {
         const { classes } = this.props;
         return (
             <Card className={classes.root} >
                 <CardHeader
                     avatar={
-                        <Avatar className={classes.avatar}>
-                            C
-                            </Avatar>
+                        <Avatar className={classes.avatar} src="./logo.png" />
                     }
                     action={
                         <IconButton aria-label="settings">
@@ -160,21 +199,21 @@ class InfoCard extends Component {
                 />
                 <CardContent className={classes.content}>
                     <div className={classes.mainInfo}>
-                        <Typography variant="h7" color="textSecondary" component="p">
+                        <Typography variant="subtitle1" color="textSecondary" component="p">
                             {`ID: ${this.props.offerID}`}
                         </Typography>
-                        <Typography variant="h7" color="textSecondary" component="p">
+                        <Typography variant="subtitle1" color="textSecondary" component="p">
                             {`優惠信用卡: ${this.props.cardName} ${this.props.cardID}`}
                         </Typography>
-                        <Typography variant="h7" color="textSecondary" component="p">
+                        <Typography variant="subtitle1" color="textSecondary" component="p">
                             {`優惠期間: ${this.props.expiration.beginDate} - ${this.props.expiration.endDate}`}
                         </Typography>
                     </div>
                     <div className={classes.subInfo}>
-                        <Typography variant="h7" color="textSecondary" component="p">
+                        <Typography variant="subtitle1" color="textSecondary" component="p">
                             {`搜尋次數: ${this.props.numSearch}`}
                         </Typography>
-                        <Typography variant="h7" color="textSecondary" component="p">
+                        <Typography variant="subtitle1" color="textSecondary" component="p">
                             {`類別: ${this.props.category}`}
                         </Typography>
                     </div>
@@ -203,6 +242,7 @@ class InfoCard extends Component {
                                         readOnly: true,
                                     }}
                                     defaultValue={this.state.offerID}
+                                    onChange={(e) => this.handleTextareaChange({ offerID: e.target.value })}
                                 />
                                 <TextField
                                     className={classes.basicData}
@@ -212,6 +252,8 @@ class InfoCard extends Component {
                                         readOnly: true,
                                     }}
                                     defaultValue={this.state.numSearch}
+                                    onChange={(e) => this.handleTextareaChange({ numSearch: e.target.value })}
+
                                 />
                                 <FormControl className={classes.basicData}>
                                     <InputLabel shrink id="demo-simple-select-placeholder-label-label">
@@ -221,7 +263,7 @@ class InfoCard extends Component {
                                         labelId="demo-simple-select-placeholder-label-label"
                                         id="demo-simple-select-placeholder-label"
                                         value={this.state.category}
-                                        onChange={this.handleChange}
+                                        onChange={(e) => this.handleTextareaChange({ category: e.target.value })}
                                         displayEmpty
                                         className={classes.selectEmpty}
                                     >
@@ -239,95 +281,125 @@ class InfoCard extends Component {
                                     id="outlined-helperText"
                                     label={`信用卡 cardName`}
                                     defaultValue={this.state.cardName}
+                                    onChange={(e) => this.handleTextareaChange({ cardName: e.target.value })}
+
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`信用卡ID cardID`}
                                     defaultValue={this.state.cardID}
+                                    onChange={(e) => this.handleTextareaChange({ cardID: e.target.value })}
+
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`開始時間 beginDate`}
-                                    defaultValue={this.state.expiration.beginDate}
+                                    defaultValue={this.state.beginDate}
+                                    onChange={(e) => this.handleTextareaChange({ beginDate: e.target.value })}
+
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`結束時間 endDate`}
-                                    defaultValue={this.state.expiration.endDate}
+                                    defaultValue={this.state.endDate}
+                                    onChange={(e) => this.handleTextareaChange({ endDate: e.target.value })}
+
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`時機 timingToOffer`}
-                                    defaultValue="Default Value"
+                                    defaultValue={this.state.timingToOffer}
+                                    onChange={(e) => this.handleTextareaChange({ timingToOffer: e.target.value })}
+
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`限制 limits`}
-                                    defaultValue="Default Value"
+                                    defaultValue={this.state.limits}
+                                    onChange={(e) => this.handleTextareaChange({ limits: e.target.value })}
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`身份 userIdentity`}
-                                    defaultValue="Default Value"
+                                    defaultValue={this.state.userIdentity}
+                                    onChange={(e) => this.handleTextareaChange({ userIdentity: e.target.value })}
+
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`timingOfConsumption`}
-                                    defaultValue="Default Value"
+                                    defaultValue={this.state.timingOfConsumption}
+                                    onChange={(e) => this.handleTextareaChange({ timingOfConsumption: e.target.value })}
+
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`numberOfConsumption`}
-                                    defaultValue="Default Value"
+                                    defaultValue={this.state.numberOfConsumption}
+                                    onChange={(e) => this.handleTextareaChange({ numberOfConsumption: e.target.value })}
                                 />
                                 <TextField
                                     className={classes.basicData}
                                     id="outlined-helperText"
                                     label={`消費種類 type`}
-                                    defaultValue="Default Value"
+                                    defaultValue={this.state.type}
+                                    onChange={(e) => this.handleTextareaChange({ type: e.target.value })}
                                 />
                             </div>
                             <div className={classes.mainModifyArea}>
-                                {/* <TextField
-                                    className={classes.basicData}
-                                    id="outlined-helperText"
-                                    label={`優惠名稱 offerName`}
-                                    defaultValue="Default Value"
-                                /> */}
+
                                 {`優惠名稱 offerName`}
-                                <TextareaAutosize className={classes.textArea} aria-label={`優惠名稱 offerName`} rowsMin={2} defaultValue="Minimum 3 rows" />
+                                <TextareaAutosize
+                                    className={classes.textArea}
+                                    rowsMin={1}
+                                    defaultValue={this.state.offerName}
+                                    onChange={(e) => this.handleTextareaChange({ offerName: e.target.value })}
+                                />
+                                {`摘要 offerAbstract`}
+                                <TextareaAutosize
+                                    className={classes.textArea}
+                                    rowsMin={2}
+                                    defaultValue={this.state.offerAbstract}
+                                    onChange={(e) => this.handleTextareaChange({ offerAbstract: e.target.value })}
+                                />
                                 {`詳細內容 contents`}
-                                <TextareaAutosize className={classes.textArea} aria-label={`摘要 offerAbstract`} rowsMin={8} defaultValue="Minimum 3 rows" />
+                                <TextareaAutosize
+                                    className={classes.textArea}
+                                    rowsMin={8}
+                                    defaultValue={this.state.contents}
+                                    onChange={(e) => this.handleTextareaChange({ contents: e.target.value })}
+                                />
                                 {`筆記 notes`}
-                                <TextareaAutosize className={classes.textArea} aria-label={`摘要 offerAbstract`} rowsMin={1} defaultValue="Minimum 3 rows" />
+                                <TextareaAutosize
+                                    className={classes.textArea}
+                                    rowsMin={1}
+                                    defaultValue={this.state.notes}
+                                    onChange={(e) => this.handleTextareaChange({ notes: e.target.value })}
+                                />
                             </div>
                         </div>
 
 
                         <div className={classes.previewArea}>
                             <ContentMarkdown
-                                title={this.props.offerName}
-                                subtitle={`優惠期間: ${this.props.expiration.beginDate} - ${this.props.expiration.endDate}`}
-                                source=
-                                "asdas  \
-                                asdasd  \
-                                asdads  \
-                                asd"
+                                title={this.state.offerName}
+                                subtitle={`優惠期間: ${this.state.beginDate} - ${this.state.endDate}`}
+                                source={this.state.contents}
                                 skipHtml='skip'
                                 escapeHtml='escape'
                             />
                         </div>
                     </div>
                     <CardActions className={classes.cardActions}>
-                        <Button className={classes.cardButton} size="small" >
+                        <Button className={classes.cardButton} size="small" onClick={this.onSave}>
                             Save
                         </Button>
                         <Button className={classes.cardButton} size="small" >

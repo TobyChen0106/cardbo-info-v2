@@ -78,20 +78,61 @@ const Store = require('../models/Store');
 //         }
 //     })
 // });
+router.post('/get-offer-id', (req, res) => {
+    const offerID = req.body.offerID;
+    Offer.findOne({ offerID: offerID }, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else if (!data) {
+            console.log("[ERROR] <get-offer-id> DATA NOT FOUND!");
+        } else {
+            res.json(data);
+        }
+    })
+});
+router.post('/save-one-offer', (req, res) => {
+    const newdata = req.body;
+    Offer.findOne({ offerID: newdata.offerID }, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else if (!data) {
+            console.log("[ERROR] <save-one-offer> DATA NOT FOUND!");
+        } else {
 
-// router.post('/card-id2name', (req, res) => {
-//     const cardID = req.body.cardID;
-//     Card.find({cardID:cardID}, (err, data) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else if (!data) {
-//             console.log("[ERROR] EMPTY DATA!");
-//         } else {
-//             res.json(data.cardName);
-//         }
-//     })
-// });
+            data.offerID = newdata.offerID;
+            data.offerName = newdata.offerName;
+            data.cardID = newdata.cardID;
+            data.cardName = newdata.cardName;
+            data.offerAbstract = newdata.offerAbstract;
+            data.category = newdata.category;
+            data.tags = newdata.tags;
+            data.numSearch = newdata.numSearch;
+            // expiration
+            data.expiration.beginDate = newdata.beginDate;
+            data.expiration.endDate = newdata.endDate;
+            // reward
+            data.reward.contents = newdata.contents;
+            data.reward.limits = newdata.limits;
+            data.reward.timingToOffer = newdata.timingToOffer;
+            data.reward.notes = newdata.notes;
+            // constraint
+            data.constraint.userIdentity = newdata.userIdentity;
+            data.constraint.timingOfConsumption = newdata.timingOfConsumption;
+            data.constraint.numberOfConsumption = newdata.numberOfConsumption;
+            // data.constraint.type = newdata.type;
+            // data.constraint.type = '海外消費';
+            // console.log(data);
+            data.save().then((data) => {
+                res.json("Offer Data modified!");
+                // console.log(data);
+            }).catch(function (error) {
+                console.log("[Error] " + error);
+            })
+        }
+    })
+});
 
 router.get('/all-offer-list', (req, res) => {
     Offer.find({}, (err, data) => {

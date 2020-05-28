@@ -18,7 +18,7 @@ import Collapse from '@material-ui/core/Collapse';
 import TextField from '@material-ui/core/TextField';
 
 import ReactMarkdown from 'react-markdown';
-import "./InfoCard.css"
+import "./ContentMarkdown.css"
 
 
 const useStyles = (theme) => ({
@@ -30,20 +30,59 @@ const useStyles = (theme) => ({
         borderWidth: "0.1rem",
         borderRadius: "0.5rem",
         borderColor: "#58a8d7",
+
     },
     root: {
-        width:"100%",
-        height:"100%",
+        width: "100%",
+        height: "100%",
         maxWidth: "100vw",
-        fontFamily: "cwTeXYen",
+        fontFamily: 'cwTeXYen, sans-serif',
+    },
+    header: {
+        display: 'flex',
+        fontFamily: 'cwTeXYen, sans-serif',
+        justifyContent: 'space-between',
+    },
+    avatarTitle:{
+        display: 'flex',
+        width: 'auto',
+        height: '5rem',
+        
     },
     avatar: {
-        backgroundColor: "#0058a3"
+        backgroundColor: "#FFFFFF",
+        width: '3rem',
+        height: '3rem',
+        marginTop: '1rem',
+        marginBottom: '1rem',
+        marginLeft: '0.5rem',
+        marginRight: '0.5rem',
+    },
+    titleHolder: {
+        width: '100%',
+        height: '100%',
+        paddingTop:'5%',
+        paddingBottom:'5%',
+    },
+    title: {
+        fontFamily: 'cwTeXYen, sans-serif',
+        fontSize: '1.2rem',
+    },
+    subtitle: {
+        fontFamily: 'cwTeXYen, sans-serif',
+        fontSize: '0.8rem',
+        color: '#777',
+    },
+    moreVertIcon: {
+        width: 'auto',
+        height: 'auto',
     },
     content: {
         wordWrap: "break-word",
         paddingLeft: "5%",
         paddingRight: "5%",
+        fontFamily: 'cwTeXYen, sans-serif',
+        fontSize: '1rem',
     },
     mainInfo: {
         width: '50%',
@@ -62,26 +101,34 @@ class ContentMarkdown extends Component {
         return (
             <div className={classes.previewHolder}>
                 <div className={classes.root}>
-                    <CardHeader
-                        avatar={
+                    <div className={classes.header}>
+                        <div className={classes.avatarTitle}>
                             <Avatar className={classes.avatar} src="./logo.png" />
-                        }
-                        action={
+                            <div className={classes.titleHolder}>
+                                <div className={classes.title}>
+                                    {this.props.title}
+                                </div>
+                                <div className={classes.subtitle}>
+                                    {this.props.subtitle}
+                                </div>
+                            </div>
+                        </div>
+                        <div className={classes.moreVertIcon}>
                             <IconButton aria-label="settings">
                                 <MoreVertIcon />
                             </IconButton>
-                        }
-                        titleTypographyProps={{ variant: 'h6' }}
-                        title={this.props.title}
-                        subheaderTypographyProps={{ variant: 'h8' }}
-                        subheader={this.props.subtitle}
-                    />
+                        </div>
+
+                    </div>
                     <ReactMarkdown
                         className={classes.content}
+                        // className="contnet"
                         source={this.props.source}
                         skipHtml={this.props.htmlMode === 'skip'}
                         escapeHtml={this.props.htmlMode === 'escape'}
                         unwrapDisallowed={true}
+                        linkTarget='_blank'
+
                     />
                 </div>
             </div>
