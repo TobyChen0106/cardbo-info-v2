@@ -78,19 +78,50 @@ const Store = require('../models/Store');
 //         }
 //     })
 // });
-router.post('/get-offer-id', (req, res) => {
-    const offerID = req.body.offerID;
+
+router.get('/get-offer-id/:id', (req, res) => {
+    const offerID = req.params.id;
+    // console.log(offerID);
     Offer.findOne({ offerID: offerID }, (err, data) => {
         if (err) {
             console.log(err);
         }
         else if (!data) {
             console.log("[ERROR] <get-offer-id> DATA NOT FOUND!");
-        } else {
+        }
+        else {
             res.json(data);
         }
     })
 });
+
+router.get('/delete-offer-id/:id', (req, res) => {
+    const offerID = req.params.id;
+    // console.log(offerID);
+    Offer.deleteOne({ offerID: offerID }, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(result);
+        }
+    })
+});
+
+// router.post('/get-offer-id', (req, res) => {
+//     const offerID = req.body.offerID;
+//     Offer.findOne({ offerID: offerID }, (err, data) => {
+//         if (err) {
+//             console.log(err);
+//         }
+//         else if (!data) {
+//             console.log("[ERROR] <get-offer-id> DATA NOT FOUND!");
+//         } else {
+//             res.json(data);
+//         }
+//     })
+// });
+
 router.post('/save-one-offer', (req, res) => {
     const newdata = req.body;
     Offer.findOne({ offerID: newdata.offerID }, (err, data) => {
@@ -121,14 +152,64 @@ router.post('/save-one-offer', (req, res) => {
             data.constraint.userIdentity = newdata.userIdentity;
             data.constraint.timingOfConsumption = newdata.timingOfConsumption;
             data.constraint.numberOfConsumption = newdata.numberOfConsumption;
-            // data.constraint.type = newdata.type;
-            // data.constraint.type = '海外消費';
-            // console.log(data);
-            data.save().then((data) => {
+            data.constraint.type = newdata.type;
+
+            data.save().then(() => {
                 res.json("Offer Data modified!");
-                // console.log(data);
             }).catch(function (error) {
                 console.log("[Error] " + error);
+            })
+        }
+    })
+});
+
+router.post('/save-new-offer', (req, res) => {
+    const newdata = req.body;
+    Offer.findOne({ offerID: newdata.offerID }, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else if (data) {
+            console.log("[ERROR] <save-new-offer> DATA ALREADY EXIST!");
+        } else {
+            var newOfferData = {
+                offerID: newdata.offerID,
+                offerName: newdata.offerName,
+                cardID: newdata.cardID,
+                cardName: newdata.cardName,
+                offerAbstract: newdata.offerAbstract,
+                category: newdata.category,
+                tags: newdata.tags,
+                numSearch: newdata.numSearch,
+
+                // expiration
+                expiration: {
+                    beginDate: newdata.beginDate,
+                    endDate: newdata.endDate,
+                },
+                // reward
+                reward: {
+                    contents: newdata.contents,
+                    limits: newdata.limits,
+                    timingToOffer: newdata.timingToOffer,
+                    notes: newdata.notes,
+                },
+                // constraint
+                constraint: {
+                    userIdentity: newdata.userIdentity,
+                    timingOfConsumption: newdata.timingOfConsumption,
+                    numberOfConsumption: newdata.numberOfConsumption,
+                    type: newdata.type,
+                },
+            }
+            const newOffer = new Offer(newOfferData);
+            // console.log(newOffer);
+            newOffer.save().then(() => {
+                res.json("New offer created!");
+            }).catch(function (error) {
+                console.log("[Error] " + error);
+                res.json("[Error] " + error);
+
             })
         }
     })
@@ -147,18 +228,7 @@ router.get('/all-offer-list', (req, res) => {
     })
 });
 
-// router.get('/infos/:id', (req, res) => {
-//     const offerID = req.params.id;
-//     // console.log(offerID);
-//     Offer.findOne({ offerID: offerID }, (err, data) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             res.json(data);
-//         }
-//     })
-// });
+
 
 // router.post('/saveinfos', (req, res) => {
 //     const infodata = req.body;

@@ -18,28 +18,23 @@ const OfferSchema = new Schema({
     },
     cardID: {                            // offer belongs to which card
         type: String,
-        required: true
     },
     cardName: {
         type: String,
-        required: true,
         default: "cardName"
     },
     // 優惠截止時間
     expiration: {                       // Expiration of the offer
         type: expirationSchema,
-        required: true
     },
     // 優惠概括描述
     offerAbstract: {
         type: String,
         default: "NAN",
-        required: true
     },
     // 優惠類別（必須從以下幾個挑選，不可新增：國內一般消費、國外一般消費、交通、食宿、娛樂、保險、其他）
     category: {
         type: String,
-        required: true
     },
     // 優惠子類別（可自行新增）
     tags: {                            // second hierarchy: 航空、停車、旅遊、現金回饋

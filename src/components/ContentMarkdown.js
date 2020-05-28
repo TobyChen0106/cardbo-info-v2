@@ -30,7 +30,7 @@ const useStyles = (theme) => ({
         borderWidth: "0.1rem",
         borderRadius: "0.5rem",
         borderColor: "#58a8d7",
-
+        backgroundColor: "#fff",
     },
     root: {
         width: "100%",
@@ -50,7 +50,7 @@ const useStyles = (theme) => ({
         
     },
     avatar: {
-        backgroundColor: "#FFFFFF",
+        // backgroundColor: "#FFFFFF",
         width: '3rem',
         height: '3rem',
         marginTop: '1rem',
@@ -103,7 +103,7 @@ class ContentMarkdown extends Component {
                 <div className={classes.root}>
                     <div className={classes.header}>
                         <div className={classes.avatarTitle}>
-                            <Avatar className={classes.avatar} src="./logo.png" />
+                            <Avatar className={classes.avatar} src="/logo.png" />
                             <div className={classes.titleHolder}>
                                 <div className={classes.title}>
                                     {this.props.title}

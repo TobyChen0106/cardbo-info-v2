@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import DashboardRouter from "./components/DashboardRouter/DashboardRouter";
+import DashboardRouter from "./containers/DashboardRouter/DashboardRouter";
 import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();

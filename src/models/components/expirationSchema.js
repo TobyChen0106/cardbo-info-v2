@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const expirationSchema = new Schema({
-    offerID: {
+    beginDate: {
         type: String,
-        unique: true
+        default: "From now on",
     },
-    numSearch: {
-        type: Number,
-        default: 0
+    endDate: {
+        type: String,
+        default: "End of the year",
     }
 })
 
