@@ -20,64 +20,64 @@ import { Link, Router } from "react-router-dom";
 
 export const mainListItems = (
   <div>
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/">
+    <Link style={{ textDecoration: 'none', color: "#fff", }} to="/">
       <ListItem button>
         <ListItemIcon>
-          <HomeIcon />
+          <HomeIcon  style={{ color: "#fff" }}/>
         </ListItemIcon>
         <ListItemText primary="Home" />
       </ListItem>
     </Link>
 
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/Dashboard">
+    <Link style={{ textDecoration: 'none', color: "#fff", }} to="/Dashboard">
       <ListItem button>
         <ListItemIcon>
-          <DashboardIcon />
+          <DashboardIcon style={{ color: "#fff" }}/>
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItem>
     </Link>
 
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/Offers">
+    <Link style={{ textDecoration: 'none', color: "#fff", }} to="/Offers">
       <ListItem button>
         <ListItemIcon>
-          <ShoppingBasketIcon />
+          <ShoppingBasketIcon style={{ color: "#fff" }}/>
         </ListItemIcon>
         <ListItemText primary="Offers" />
       </ListItem>
     </Link>
 
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/CreditCards">
+    <Link style={{ textDecoration: 'none', color: "#fff", }} to="/CreditCards">
       <ListItem button>
         <ListItemIcon>
-          <CreditCardIcon />
+          <CreditCardIcon style={{ color: "#fff" }}/>
         </ListItemIcon>
         <ListItemText primary="Credit Cards" />
       </ListItem>
     </Link>
 
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/Banks">
+    <Link style={{ textDecoration: 'none', color: "#fff", }} to="/Banks">
       <ListItem button>
         <ListItemIcon>
-          <AccountBalanceIcon />
+          <AccountBalanceIcon style={{ color: "#fff" }}/>
         </ListItemIcon>
         <ListItemText primary="Banks" />
       </ListItem>
     </Link>
 
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/Users">
+    <Link style={{ textDecoration: 'none', color: "#fff", }} to="/Users">
       <ListItem button>
         <ListItemIcon>
-          <PeopleIcon />
+          <PeopleIcon style={{ color: "#fff" }}/>
         </ListItemIcon>
         <ListItemText primary="Users" />
       </ListItem>
     </Link>
 
-    <Link style={{ textDecoration: 'none', color: "#000000", }} to="/Setting">
+    <Link style={{ textDecoration: 'none', color: "#fff", }} to="/Setting">
       <ListItem button>
         <ListItemIcon>
-          <SettingsIcon />
+          <SettingsIcon style={{ color: "#fff" }}/>
         </ListItemIcon>
         <ListItemText primary="Setting" />
       </ListItem>

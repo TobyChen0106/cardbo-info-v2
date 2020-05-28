@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const OfferRecordSchema = new Schema({
+const expirationSchema = new Schema({
     offerID: {
         type: String,
         unique: true
@@ -13,4 +13,4 @@ const OfferRecordSchema = new Schema({
 })
 
 // const Expiration = mongoose.model('Expiration', ExpirationSchema);
-module.exports = OfferRecordSchema;
+module.exports = expirationSchema;

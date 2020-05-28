@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const StoreRecordSchema = require('./components/StoreRecordSchema');
-const OfferRecordSchema = require('./components/OfferRecordSchema');
+const StoreRecordSchema = require('./components/rewardSchema');
+const OfferRecordSchema = require('./components/expirationSchema');
 const Schema = mongoose.Schema
 
 

@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const expirationSchema = require('./components/expirationSchema')
+const rewardSchema = require('./components/rewardSchema')
+const constraintSchema = require('./components/constraintSchema')
 const Schema = mongoose.Schema
 
 const OfferSchema = new Schema({
@@ -24,18 +27,7 @@ const OfferSchema = new Schema({
     },
     // 優惠截止時間
     expiration: {                       // Expiration of the offer
-        type: {
-            beginDate: {
-                type: String,
-                default: "From now on",
-                required: true
-            },
-            endDate: {
-                type: String,
-                default: "End of the year",
-                required: true
-            }
-        },
+        type: expirationSchema,
         required: true
     },
     // 優惠概括描述
@@ -59,69 +51,11 @@ const OfferSchema = new Schema({
     },
     // 優惠資訊
     reward: {
-        type: {
-            // 優惠內容
-            contents: {                // details of an offer written in markdown
-                type: String,
-                default: "",
-            },
-            // 優惠使用限制
-            limits: {                  // limitation on the usage of an offer        
-                type: [String],
-                default: "Unlimited"
-            },
-            // 何時可以使用優惠
-            timingToOffer: {           // when an offer can be used
-                type: String,
-                default: ""
-            },
-            // 何地可以使用優惠
-            places: {                  // where an offer can be used
-                type: [String]
-            },
-            // 其他備註
-            notes: {
-                type: String,
-                default: ""
-            }
-        }
+        type: rewardSchema,
     },
     // 優惠限制條件
     constraint: {                      // prerequsites to get an offer
-        type: {
-            // 持卡人身份
-            userIdentity: {
-                type: String,
-                default: ""
-            },
-            // 必須在何時有消費
-            timingOfConsumption: {     // when does the transaction take place
-                type: String,
-                default: ""
-            },
-            // 必須在何地有消費
-            channels: {                // where does the transaction take place
-                type: [String]
-            },
-            // 必須消費多少金額
-            amounts: {                 // amount of the expense on the transaction
-                type: [String]
-            },
-            // 必須消費幾次
-            numberOfConsumption: {     // number of transactions
-                type: Number,
-                default: 0
-            },
-            // 必須以何種消費類型
-            type: {                    // may be deprecated and replaced by categories
-                type: String,
-                default: ""
-            },
-            // 其他限制條件
-            others: {
-                type: [String]
-            }
-        }
+        type: constraintSchema,
     }
 });
 
