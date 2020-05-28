@@ -136,7 +136,7 @@ class EditPage extends Component {
         this.state = {
             id: undefined,
             loading: false,
-            OfferData: true,
+            OfferData: false,
 
             offerID: undefined,
             offerName: undefined,
