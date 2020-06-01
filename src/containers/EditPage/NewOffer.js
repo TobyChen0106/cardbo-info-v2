@@ -22,6 +22,7 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import "./InfoCard.css"
 import ReactLoading from 'react-loading';
 import { useHistory } from 'react-router-dom';
+import { emptyOffer, emptyOfferList, offerList2Offer, offer2OfferList } from '../../components/objects/emtyOffer';
 var short = require('short-uuid');
 
 const useStyles = (theme) => ({
@@ -121,28 +122,32 @@ class EditPage extends Component {
         this.state = {
             offerID: undefined,
             offerName: undefined,
-            cardID: undefined,
-            cardName: undefined,
-            // expiration: this.props.expiration,
-            beginDate: undefined,
-            endDate: undefined,
-
+            bankName: undefined,
+            cardInfo_cardID: undefined,
+            cardInfo_cardName: undefined,
+            expiration_beginDate: undefined,
+            expiration_endDate: undefined,
             offerAbstract: undefined,
             category: undefined,
-            tags: undefined,
-            numSearch: 0,
-            // reward: this.props.reward,
-            timingToOffer: undefined,
-            limits: undefined,
-            contents: undefined,
-            notes: undefined,
-
-            // constraint: this.props.constraint,
-            userIdentity: undefined,
-            timingOfConsumption: undefined,
-            numberOfConsumption: undefined,
-            type: undefined,
+            tags: [undefined],
+            numSearch: undefined,
+            reward_contents: undefined,
+            reward_limits: undefined,
+            reward_timingToOffer: undefined,
+            reward_places: undefined,
+            reward_notes_value: undefined,
+            reward_notes_sentences: undefined,
+            reward_notes_time: undefined,
+            constraint_userIdentity: undefined,
+            constraint_timingOfConsumption: undefined,
+            constraint_channels: undefined,
+            constraint_amounts: undefined,
+            constraint_numberOfConsumption: undefined,
+            constraint_type: undefined,
+            constraint_others: undefined,
+            link: undefined,
         }
+
     }
 
     componentWillMount = () => {
@@ -161,30 +166,14 @@ class EditPage extends Component {
     handleTextareaChange = (changedState) => {
         this.setState(changedState);
     }
-    onSave = () => {
-        var newData = { offerID: this.state.offerID };
-        if (this.state.offerName) { newData.offerName = this.state.offerName; }
-        if (this.state.cardID) { newData.cardID = this.state.cardID; }
-        if (this.state.cardName) { newData.cardName = this.state.cardName; }
-        if (this.state.beginDate) { newData.beginDate = this.state.beginDate; }
-        if (this.state.endDate) { newData.endDate = this.state.endDate; }
-        if (this.state.offerAbstract) { newData.offerAbstract = this.state.offerAbstract; }
-        if (this.state.category) { newData.category = this.state.category; }
-        if (this.state.tags) { newData.tags = this.state.tags; }
-        // if(this.state.numSearch)newData.append({numSearch= this.state.numSearch;
-        if (this.state.contents) { newData.contents = this.state.contents; }
-        if (this.state.limits) { newData.limits = this.state.limits; }
-        if (this.state.timingToOffer) { newData.timingToOffer = this.state.timingToOffer; }
-        if (this.state.notes) { newData.notes = this.state.notes; }
-        if (this.state.userIdentity) { newData.userIdentity = this.state.userIdentity; }
-        if (this.state.timingOfConsumption) { newData.timingOfConsumption = this.state.timingOfConsumption; }
-        if (this.state.numberOfConsumption) { newData.numberOfConsumption = this.state.numberOfConsumption; }
-        if (this.state.type) { newData.type = this.state.type; }
 
-        console.log(newData)
+    onSave = () => {
+        var new_data = offerList2Offer(this.state);
+        console.log(new_data)
+
         fetch('/api/save-new-offer', {
             method: 'POST',
-            body: JSON.stringify(newData),
+            body: JSON.stringify(new_data),
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
@@ -251,40 +240,40 @@ class EditPage extends Component {
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`信用卡 cardName`}
-                                defaultValue={this.state.cardName}
-                                onChange={(e) => this.handleTextareaChange({ cardName: e.target.value })}
+                                defaultValue={this.state.cardInfo_cardName}
+                                onChange={(e) => this.handleTextareaChange({ cardInfo_cardName: e.target.value })}
 
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`信用卡ID cardID`}
-                                defaultValue={this.state.cardID}
-                                onChange={(e) => this.handleTextareaChange({ cardID: e.target.value })}
+                                defaultValue={this.state.cardInfo_cardID}
+                                onChange={(e) => this.handleTextareaChange({ cardInfo_cardID: e.target.value })}
 
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`開始時間 beginDate`}
-                                defaultValue={this.state.beginDate}
-                                onChange={(e) => this.handleTextareaChange({ beginDate: e.target.value })}
+                                defaultValue={this.state.expiration_beginDate}
+                                onChange={(e) => this.handleTextareaChange({ expiration_beginDate: e.target.value })}
 
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`結束時間 endDate`}
-                                defaultValue={this.state.endDate}
-                                onChange={(e) => this.handleTextareaChange({ endDate: e.target.value })}
+                                defaultValue={this.state.expiration_endDate}
+                                onChange={(e) => this.handleTextareaChange({ expiration_endDate: e.target.value })}
 
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`時機 timingToOffer`}
-                                defaultValue={this.state.timingToOffer}
-                                onChange={(e) => this.handleTextareaChange({ timingToOffer: e.target.value })}
+                                defaultValue={this.state.reward_timingToOffer}
+                                onChange={(e) => this.handleTextareaChange({ reward_timingToOffer: e.target.value })}
 
                             />
                             <TextField

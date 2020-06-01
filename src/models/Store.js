@@ -7,11 +7,11 @@ const StoreSchema = new Schema({
         required: true,
         unique: true
     },
-    categories: {                    // Top hierarchy: 交通、食宿、國內一般消費  
-        type: [String]
+    categories: {
+        type:[String]
     },
-    tags: {                          // second hierarchy: 航空、停車、旅遊、現金回饋
-        type: [String]
+    tags: {
+        type:[String]
     },
     imageLink: {
         type: String
@@ -19,11 +19,11 @@ const StoreSchema = new Schema({
     websiteLink: {
         type: String
     },
-    numSearch: {
+    numSearch:{
         type: Number,
         default: 0
     }
-});
+})
 
-const Store = mongoose.model('Store', StoreSchema);
+const Store = mongoose.model('store', StoreSchema);
 module.exports = Store;

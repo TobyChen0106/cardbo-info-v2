@@ -1,58 +1,110 @@
 const mongoose = require('mongoose')
-const expirationSchema = require('./components/expirationSchema')
-const rewardSchema = require('./components/rewardSchema')
-const constraintSchema = require('./components/constraintSchema')
+const ExpirationSchema = require('./components/expiration')
+const CardInfoSchema = require('./components/card_info')
+const NoteSchema = require('./components/reward_note')
 const Schema = mongoose.Schema
 
+const RewardSchema = new Schema({
+    contents: {
+        type: String,
+        default: "",
+    },
+    limits: {
+        type: String,
+        default: ""
+    },
+    timingToOffer: {
+        type: String,
+        default: ""
+    },
+    places: {
+        type: [String]
+    },
+    notes: {
+        type: NoteSchema,
+    }
+})
+
+const ConstraintSchema = new Schema({
+    userIdentity: {
+        type: String,
+        default: ""
+    },
+    timingOfConsumption: {
+        type: String,
+        default: ""
+    },
+    channels: {
+        type: String,
+        default: ""
+    },
+    amounts: {
+        type: String,
+        default: ""
+    },
+    numberOfConsumption: {
+        type: String,
+        default: ""
+    },
+    type: {
+        type: String,
+        default: ""
+    },    
+    others: {
+        type: String,
+        default: ""
+    }
+})
+
 const OfferSchema = new Schema({
-    // ID 由亂數產生
     offerID: {
         type: String,
         required: true,
         unique: true
     },
-    // 優惠名稱
     offerName: {
         type: String,
-        default: "offerName"
+        default: ""
     },
-    cardID: {                            // offer belongs to which card
+    bankName: {
         type: String,
+        default: ""
     },
-    cardName: {
-        type: String,
-        default: "cardName"
+    cardInfo: {
+        type: [CardInfoSchema]
+    }
+    ,
+    expiration: {
+        type: ExpirationSchema,
     },
-    // 優惠截止時間
-    expiration: {                       // Expiration of the offer
-        type: expirationSchema,
-    },
-    // 優惠概括描述
     offerAbstract: {
         type: String,
-        default: "NAN",
+        default: "",
     },
-    // 優惠類別（必須從以下幾個挑選，不可新增：國內一般消費、國外一般消費、交通、食宿、娛樂、保險、其他）
     category: {
         type: String,
+        required: true,
+        enum: ['國內一般消費', '國外一般消費', '交通', '食宿', '娛樂', '保險', '其他'],
+        default: "國內一般消費",
     },
-    // 優惠子類別（可自行新增）
-    tags: {                            // second hierarchy: 航空、停車、旅遊、現金回饋
-        type: [String]
+    tags: {
+        type:[String]
     },
-    numSearch: {                        // the number of being searched by user
+    numSearch:{
         type: Number,
         default: 0
     },
-    // 優惠資訊
     reward: {
-        type: rewardSchema,
+        type: RewardSchema,
     },
-    // 優惠限制條件
-    constraint: {                      // prerequsites to get an offer
-        type: constraintSchema,
-    }
-});
+    constraint: {
+        type: ConstraintSchema
+    },
+    link: {
+        type: String,
+        default: ''
+    },
+})
 
-const Offer = mongoose.model('Offer', OfferSchema);
+const Offer = mongoose.model('offer', OfferSchema);
 module.exports = Offer;

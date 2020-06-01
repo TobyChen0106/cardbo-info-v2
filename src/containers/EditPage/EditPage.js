@@ -161,6 +161,9 @@ class EditPage extends Component {
             timingOfConsumption: undefined,
             numberOfConsumption: undefined,
             type: undefined,
+            channels: undefined,
+            amounts: undefined,
+            others: undefined,
         }
     }
 
@@ -206,8 +209,8 @@ class EditPage extends Component {
                 this.setState({
                     OfferData: true,
 
-                    cardID: data.cardID,
-                    cardName: data.cardName,
+                    cardID: data.cardInfo[0].cardID,
+                    cardName: data.cardInfo[0].cardName,
 
                     // expiration: this.props.expiration,
                     beginDate: data.expiration.beginDate,
@@ -224,13 +227,16 @@ class EditPage extends Component {
                     timingToOffer: data.reward.timingToOffer,
                     limits: data.reward.limits,
                     contents: data.reward.contents,
-                    notes: data.reward.notes,
+                    notes: data.reward.notes.sentences,
 
                     // constraint: this.props.constraint,
                     userIdentity: data.constraint.userIdentity,
                     timingOfConsumption: data.constraint.timingOfConsumption,
                     numberOfConsumption: data.constraint.numberOfConsumption,
                     type: data.constraint.type,
+                    channels: data.constraint.channels,
+                    amounts: data.constraint.amounts,
+                    others: data.constraint.others,
                 });
             } else {
                 console.log("data not found!");
@@ -273,6 +279,9 @@ class EditPage extends Component {
             timingOfConsumption: this.state.timingOfConsumption,
             numberOfConsumption: this.state.numberOfConsumption,
             type: this.state.type,
+            channels: this.state.channels,
+            amounts: this.state.amounts,
+            others: this.state.others,
         };
         console.log(newData)
         fetch('/api/save-one-offer', {
@@ -471,6 +480,27 @@ class EditPage extends Component {
                                     label={`消費種類 type`}
                                     defaultValue={this.state.type}
                                     onChange={(e) => this.handleTextareaChange({ type: e.target.value })}
+                                />
+                                <TextField
+                                    className={classes.basicData}
+                                    id="outlined-helperText"
+                                    label={`channels`}
+                                    defaultValue={this.state.channels}
+                                    onChange={(e) => this.handleTextareaChange({ channels: e.target.value })}
+                                />
+                                <TextField
+                                    className={classes.basicData}
+                                    id="outlined-helperText"
+                                    label={`amounts`}
+                                    defaultValue={this.state.amounts}
+                                    onChange={(e) => this.handleTextareaChange({ amounts: e.target.value })}
+                                />
+                                <TextField
+                                    className={classes.basicData}
+                                    id="outlined-helperText"
+                                    label={`others`}
+                                    defaultValue={this.state.others}
+                                    onChange={(e) => this.handleTextareaChange({ others: e.target.value })}
                                 />
                             </div>
                             <div className={classes.mainModifyArea}>

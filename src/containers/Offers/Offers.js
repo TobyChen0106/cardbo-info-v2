@@ -176,8 +176,8 @@ class Offers extends Component {
                         id={`offer-card-id-${index}`}
                         offerID={i.offerID}
                         offerName={i.offerName}
-                        cardID={i.cardID}
-                        cardName={i.cardName}
+                        cardID={i.cardInfo[0].cardID}
+                        cardName={i.cardInfo[0].cardName}
                         expiration={i.expiration}
                         offerAbstract={i.offerAbstract}
                         category={i.category}
