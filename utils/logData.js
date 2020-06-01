@@ -26,10 +26,11 @@ Offer.find({}, (err, data) => {
     else if (!data) {
         console.log("[ERROR] EMPTY DATA!");
     } else {
-        for (var i = 0; i < data.length; ++i) {
+        var i;
+        for (i = 0; i < data.length; ++i) {
             console.log(data[i]);
         }
-
+        console.log(i);
 
     }
 })

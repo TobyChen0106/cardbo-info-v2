@@ -161,6 +161,7 @@ class DashboardRouter extends Component {
           {/* <div className={classes.appBarSpacer} /> */}
           <Container maxWidth="xl" className={classes.container}>
             <Switch>
+              <Route exact={true} path="*" component={Home} />
               <Route exact={true} path="/" component={Home} />
               <Route exact={true} path="/dashboard" component={Dashboard} />
               <Route exact={true} path="/offers" component={Offers} />
@@ -171,6 +172,7 @@ class DashboardRouter extends Component {
               <Route exact={true} path="/signUp" component={SignUp} />
               <Route exact={true} path="/signIn" component={SignIn} />
               <Route exact={true} path="/edit/:id?" component={EditPage} />
+              <Route exact={true} path="/view/:id?" component={EditPage} />
               <Route exact={true} path="/newoffer" component={NewOffer} />
             </Switch>
             <Box pt={4}>
