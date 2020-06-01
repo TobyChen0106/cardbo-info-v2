@@ -134,8 +134,10 @@ router.post('/save-one-offer', (req, res) => {
 
             data.offerID = newdata.offerID;
             data.offerName = newdata.offerName;
-            data.cardID = newdata.cardID;
-            data.cardName = newdata.cardName;
+
+            data.cardInfo[0].cardID = newdata.cardID;
+            data.cardInfo[0].cardName = newdata.cardName;
+
             data.offerAbstract = newdata.offerAbstract;
             data.category = newdata.category;
             data.tags = newdata.tags;
@@ -147,12 +149,15 @@ router.post('/save-one-offer', (req, res) => {
             data.reward.contents = newdata.contents;
             data.reward.limits = newdata.limits;
             data.reward.timingToOffer = newdata.timingToOffer;
-            data.reward.notes = newdata.notes;
+            data.reward.notes.sentences = newdata.notes;
             // constraint
             data.constraint.userIdentity = newdata.userIdentity;
             data.constraint.timingOfConsumption = newdata.timingOfConsumption;
             data.constraint.numberOfConsumption = newdata.numberOfConsumption;
             data.constraint.type = newdata.type;
+            data.constraint.channels = newdata.channels;
+            data.constraint.amounts = newdata.amounts;
+            data.constraint.others = newdata.others;
 
             data.save().then(() => {
                 res.json("Offer Data modified!");
@@ -172,37 +177,39 @@ router.post('/save-new-offer', (req, res) => {
         else if (data) {
             console.log("[ERROR] <save-new-offer> DATA ALREADY EXIST!");
         } else {
-            var newOfferData = {
-                offerID: newdata.offerID,
-                offerName: newdata.offerName,
-                cardID: newdata.cardID,
-                cardName: newdata.cardName,
-                offerAbstract: newdata.offerAbstract,
-                category: newdata.category,
-                tags: newdata.tags,
-                numSearch: newdata.numSearch,
+            // var newOfferData = {
+            //     offerID: newdata.offerID,
+            //     offerName: newdata.offerName,
+            //     cardInfo: [{
+            //         cardID: newdata.cardID,
+            //         cardName: newdata.cardName,
+            //     }],
+            //     offerAbstract: newdata.offerAbstract,
+            //     category: newdata.category,
+            //     tags: newdata.tags,
+            //     numSearch: newdata.numSearch,
 
-                // expiration
-                expiration: {
-                    beginDate: newdata.beginDate,
-                    endDate: newdata.endDate,
-                },
-                // reward
-                reward: {
-                    contents: newdata.contents,
-                    limits: newdata.limits,
-                    timingToOffer: newdata.timingToOffer,
-                    notes: newdata.notes,
-                },
-                // constraint
-                constraint: {
-                    userIdentity: newdata.userIdentity,
-                    timingOfConsumption: newdata.timingOfConsumption,
-                    numberOfConsumption: newdata.numberOfConsumption,
-                    type: newdata.type,
-                },
-            }
-            const newOffer = new Offer(newOfferData);
+            //     // expiration
+            //     expiration: {
+            //         beginDate: newdata.beginDate,
+            //         endDate: newdata.endDate,
+            //     },
+            //     // reward
+            //     reward: {
+            //         contents: newdata.contents,
+            //         limits: newdata.limits,
+            //         timingToOffer: newdata.timingToOffer,
+            //         notes: newdata.notes,
+            //     },
+            //     // constraint
+            //     constraint: {
+            //         userIdentity: newdata.userIdentity,
+            //         timingOfConsumption: newdata.timingOfConsumption,
+            //         numberOfConsumption: newdata.numberOfConsumption,
+            //         type: newdata.type,
+            //     },
+            // }
+            const newOffer = new Offer(newdata);
             // console.log(newOffer);
             newOffer.save().then(() => {
                 res.json("New offer created!");

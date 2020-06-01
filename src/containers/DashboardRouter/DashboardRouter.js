@@ -27,6 +27,7 @@ import CreditCards from "../CreditCards/CreditCards";
 import SignIn from "../sign-up-in/SignIn";
 import SignUp from "../sign-up-in/SignUp";
 import EditPage from "../EditPage/EditPage";
+import ViewPage from "../ViewPage/ViewPage";
 import NewOffer from "../EditPage/NewOffer";
 
 function Copyright() {
@@ -172,7 +173,7 @@ class DashboardRouter extends Component {
               <Route exact={true} path="/signUp" component={SignUp} />
               <Route exact={true} path="/signIn" component={SignIn} />
               <Route exact={true} path="/edit/:id?" component={EditPage} />
-              <Route exact={true} path="/view/:id?" component={EditPage} />
+              <Route exact={true} path="/view/:id?" component={ViewPage} />
               <Route exact={true} path="/newoffer" component={NewOffer} />
             </Switch>
             <Box pt={4}>

@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
-const StoreRecordSchema = require('./components/rewardSchema');
-const OfferRecordSchema = require('./components/expirationSchema');
 const Schema = mongoose.Schema
-
+const OfferRecordSchema = require("./components/offer-record")
+const StoreRecordSchema = require("./components/store-record")
 
 const UserSchema = new Schema({
     lineID: {
@@ -26,18 +25,19 @@ const UserSchema = new Schema({
         required: true
     },
     cards:{
-        type: [String],                // Store CardID
+        // cardID
+        type: [String],
         default: undefined,
     },
     favoriteStores:{
-        type: [StoreRecordSchema],     // Stores haved been queried
+        type: [StoreRecordSchema],
         default: [],
     },
     favoriteOffers:{
-        type: [OfferRecordSchema],     // Offers haved been used 
+        type: [OfferRecordSchema],
         default: [],
     }
-});
+})
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema, "users");
 module.exports = User;
