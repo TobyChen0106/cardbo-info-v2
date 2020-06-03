@@ -169,7 +169,7 @@ class EditPage extends Component {
 
     onSave = () => {
         var new_data = offerList2Offer(this.state);
-        console.log(new_data)
+        console.log(new_data);
 
         fetch('/api/save-new-offer', {
             method: 'POST',
@@ -280,38 +280,59 @@ class EditPage extends Component {
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`限制 limits`}
-                                defaultValue={this.state.limits}
-                                onChange={(e) => this.handleTextareaChange({ limits: e.target.value })}
+                                defaultValue={this.state.reward_limits}
+                                onChange={(e) => this.handleTextareaChange({ reward_limits: e.target.value })}
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`身份 userIdentity`}
-                                defaultValue={this.state.userIdentity}
-                                onChange={(e) => this.handleTextareaChange({ userIdentity: e.target.value })}
+                                defaultValue={this.state.constraint_userIdentity}
+                                onChange={(e) => this.handleTextareaChange({ constraint_userIdentity: e.target.value })}
 
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`timingOfConsumption`}
-                                defaultValue={this.state.timingOfConsumption}
-                                onChange={(e) => this.handleTextareaChange({ timingOfConsumption: e.target.value })}
+                                defaultValue={this.state.constraint_timingOfConsumption}
+                                onChange={(e) => this.handleTextareaChange({ constraint_timingOfConsumption: e.target.value })}
 
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`numberOfConsumption`}
-                                defaultValue={this.state.numberOfConsumption}
-                                onChange={(e) => this.handleTextareaChange({ numberOfConsumption: e.target.value })}
+                                defaultValue={this.state.constraint_numberOfConsumption}
+                                onChange={(e) => this.handleTextareaChange({ constraint_numberOfConsumption: e.target.value })}
                             />
                             <TextField
                                 className={classes.basicData}
                                 id="outlined-helperText"
                                 label={`消費種類 type`}
-                                defaultValue={this.state.type}
-                                onChange={(e) => this.handleTextareaChange({ type: e.target.value })}
+                                defaultValue={this.state.constraint_type}
+                                onChange={(e) => this.handleTextareaChange({ constraint_type: e.target.value })}
+                            />
+                            <TextField
+                                className={classes.basicData}
+                                id="outlined-helperText"
+                                label={`channels`}
+                                defaultValue={this.state.constraint_channels}
+                                onChange={(e) => this.handleTextareaChange({ constraint_channels: e.target.value })}
+                            />
+                            <TextField
+                                className={classes.basicData}
+                                id="outlined-helperText"
+                                label={`amounts`}
+                                defaultValue={this.state.constraint_amounts}
+                                onChange={(e) => this.handleTextareaChange({ constraint_amounts: e.target.value })}
+                            />
+                            <TextField
+                                className={classes.basicData}
+                                id="outlined-helperText"
+                                label={`others`}
+                                defaultValue={this.state.constraint_others}
+                                onChange={(e) => this.handleTextareaChange({ constraint_others: e.target.value })}
                             />
                         </div>
                         <div className={classes.mainModifyArea}>
@@ -334,15 +355,15 @@ class EditPage extends Component {
                             <TextareaAutosize
                                 className={classes.textArea}
                                 rowsMin={8}
-                                defaultValue={this.state.contents}
-                                onChange={(e) => this.handleTextareaChange({ contents: e.target.value })}
+                                defaultValue={this.state.reward_contents}
+                                onChange={(e) => this.handleTextareaChange({ reward_contents: e.target.value })}
                             />
                             {`筆記 notes`}
                             <TextareaAutosize
                                 className={classes.textArea}
                                 rowsMin={1}
-                                defaultValue={this.state.notes}
-                                onChange={(e) => this.handleTextareaChange({ notes: e.target.value })}
+                                defaultValue={this.state.reward_notes_sentences}
+                                onChange={(e) => this.handleTextareaChange({ reward_notes_sentences: e.target.value })}
                             />
                         </div>
                     </div>
@@ -351,8 +372,8 @@ class EditPage extends Component {
                     <div className={classes.previewArea}>
                         <ContentMarkdown
                             title={this.state.offerName}
-                            subtitle={`優惠期間: ${this.state.beginDate} - ${this.state.endDate}`}
-                            source={this.state.contents}
+                            subtitle={`優惠期間: ${this.state.expiration_beginDate} - ${this.state.expiration_endDate}`}
+                            source={this.state.reward_contents}
                             skipHtml='skip'
                             escapeHtml='escape'
                         />

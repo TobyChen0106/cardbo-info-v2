@@ -23,7 +23,7 @@ import Offers from "../Offers/Offers";
 import Banks from "../Banks/Banks";
 import Users from "../Users/Users";
 import Setting from "../Setting/Setting";
-import CreditCards from "../CreditCards/CreditCards";
+import CreditCards from "../Dashboard/CreditCards/CreditCards";
 import SignIn from "../sign-up-in/SignIn";
 import SignUp from "../sign-up-in/SignUp";
 import EditPage from "../EditPage/EditPage";
@@ -162,7 +162,7 @@ class DashboardRouter extends Component {
           {/* <div className={classes.appBarSpacer} /> */}
           <Container maxWidth="xl" className={classes.container}>
             <Switch>
-              <Route exact={true} path="*" component={Home} />
+              {/* <Route exact={true} path="*" component={Home} /> */}
               <Route exact={true} path="/" component={Home} />
               <Route exact={true} path="/dashboard" component={Dashboard} />
               <Route exact={true} path="/offers" component={Offers} />

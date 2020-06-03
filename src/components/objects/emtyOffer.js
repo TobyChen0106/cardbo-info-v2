@@ -82,7 +82,7 @@ export const offerList2Offer = (offerList) => {
             endDate: offerList.expiration_endDate,
         },
         offerAbstract: offerList.offerAbstract,
-        category: offerList.offerAbstract,
+        category: offerList.category,
         tags: offerList.tags,
         numSearch: offerList.numSearch,
         reward: {
@@ -105,7 +105,7 @@ export const offerList2Offer = (offerList) => {
             type: offerList.constraint_type,
             others: offerList.constraint_others
         },
-        link: offer.link,
+        link: offerList.link,
     })
 }
 
