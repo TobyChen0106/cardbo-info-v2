@@ -23,7 +23,7 @@ import Offers from "../Offers/Offers";
 import Banks from "../Banks/Banks";
 import Users from "../Users/Users";
 import Setting from "../Setting/Setting";
-import CreditCards from "../Dashboard/CreditCards/CreditCards";
+import CreditCards from "../CreditCards/CreditCards";
 import SignIn from "../sign-up-in/SignIn";
 import SignUp from "../sign-up-in/SignUp";
 import EditPage from "../EditPage/EditPage";
@@ -173,8 +173,8 @@ class DashboardRouter extends Component {
               <Route exact={true} path="/signUp" component={SignUp} />
               <Route exact={true} path="/signIn" component={SignIn} />
               <Route exact={true} path="/edit/:id?" component={EditPage} />
-              <Route exact={true} path="/view/:id?" component={ViewPage} />
               <Route exact={true} path="/newoffer" component={NewOffer} />
+              <Route exact={true} path="*" component={<div>404 NOT FOUND</div>} />
             </Switch>
             <Box pt={4}>
               <Copyright />

@@ -3,6 +3,7 @@ import './App.css';
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import DashboardRouter from "./containers/DashboardRouter/DashboardRouter";
+import ViewPage from "./containers/ViewPage/ViewPage";
 import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
@@ -24,10 +25,11 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        {/* <Switch>
-          <Route exact={true} path="/dash" component={DashboardRouter} />
-        </Switch> */}
-        <DashboardRouter onSavePassWord={this.onSavePassWord} />
+        <Switch>
+          <Route  exact={true} path="/view/:id?" component={ViewPage} />
+          <Route  path="/" component={DashboardRouter} />
+        </Switch>
+        {/* <DashboardRouter onSavePassWord={this.onSavePassWord} /> */}
       </BrowserRouter>
     );
   }
