@@ -69,7 +69,9 @@ class ViewPage extends Component {
     }
 
     componentWillMount = () => {
+        console.log('view page');
         const id = this.props.match.params.id;
+        console.log(id);
         fetch('/api/get-offer-id/' + id).catch(function (error) {
             window.alert("[Error] " + error);
         }).then(
@@ -79,8 +81,8 @@ class ViewPage extends Component {
                 this.setState({
                     OfferData: true,
 
-                    cardID: data.cardID,
-                    cardName: data.cardName,
+                    cardID: data.cardInfo[0].cardID,
+                    cardName: data.cardInfo[0].cardName,
 
                     // expiration: this.props.expiration,
                     beginDate: data.expiration.beginDate,
@@ -97,13 +99,16 @@ class ViewPage extends Component {
                     timingToOffer: data.reward.timingToOffer,
                     limits: data.reward.limits,
                     contents: data.reward.contents,
-                    notes: data.reward.notes,
+                    notes: data.reward.notes.sentences,
 
                     // constraint: this.props.constraint,
                     userIdentity: data.constraint.userIdentity,
                     timingOfConsumption: data.constraint.timingOfConsumption,
                     numberOfConsumption: data.constraint.numberOfConsumption,
                     type: data.constraint.type,
+                    channels: data.constraint.channels,
+                    amounts: data.constraint.amounts,
+                    others: data.constraint.others,
                 });
             } else {
                 console.log("data not found!");
