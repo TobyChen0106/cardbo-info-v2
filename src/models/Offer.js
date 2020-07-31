@@ -72,8 +72,11 @@ const OfferSchema = new Schema({
     },
     cardInfo: {
         type: [CardInfoSchema]
-    }
-    ,
+    },
+    provider: {
+        type: String,
+        default: "卡伯"
+    },
     expiration: {
         type: ExpirationSchema,
     },
