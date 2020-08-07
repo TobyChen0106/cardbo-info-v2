@@ -35,58 +35,58 @@ span a {
 } */
 
 @keyframes float {
-    0% {
-        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-        transform: translatey(0px);
-    }
-    50% {
-        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
-        transform: translatey(-20px);
-    }
-    100% {
-        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-        transform: translatey(0px);
-    }
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
 }
 
 .container {
-    margin-top: 20vh;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* background: #FFFFFF; */
+  margin-top: 20vh;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background: #FFFFFF; */
 }
 
 .avatar {
-    width: 20rem;
-    height: 20rem;
-    max-width: 40vw;
-    max-height: 40vw;
-    /* box-sizing: border-box; */
-    border: 0px white solid;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-    transform: translatey(0px);
-    animation: float 2s ease-in-out infinite;
+  width: 20rem;
+  height: 20rem;
+  max-width: 40vw;
+  max-height: 40vw;
+  /* box-sizing: border-box; */
+  border: 0px white solid;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+  transform: translatey(0px);
+  animation: float 2s ease-in-out infinite;
 }
 
 img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .content {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px 40px;
-    box-sizing: border-box;
-    text-align: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-label:hover{
-    color: #ffffff;
+label:hover {
+  color: #ffffff;
 }

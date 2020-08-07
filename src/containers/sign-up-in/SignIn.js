@@ -1,35 +1,35 @@
 import React, { Component } from "react";
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockIcon from '@material-ui/icons/Lock';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockIcon from "@material-ui/icons/Lock";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
-import { sha256 } from 'js-sha256';
+import { sha256 } from "js-sha256";
 
 const useStyles = (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: "#0058a3",
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    maxWidth: '40rem',
+    width: "100%", // Fix IE 11 issue.
+    maxWidth: "40rem",
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -40,17 +40,15 @@ const useStyles = (theme) => ({
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {};
   }
 
   onSavePassWord = (e) => {
     e.preventDefault();
-    console.log('onSavePassWord');
-    var email = document.getElementById('email').value;
-    var password = sha256(document.getElementById('password').value);
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log("onSavePassWord");
+    const email = document.getElementById("email").value;
+    const password = sha256(document.getElementById("password").value);
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (re.test(email)) {
       console.log(email, "valid");
@@ -62,11 +60,12 @@ class SignIn extends Component {
     } else {
       console.log(password, "valid");
     }
-  }
+  };
+
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.paper} >
+      <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockIcon />
         </Avatar>
@@ -118,7 +117,7 @@ class SignIn extends Component {
             </Grid>
             <Grid item>
               <Link href="/SignUp" variant="body2">
-                {"Don't have an account? Sign Up"}
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
@@ -128,4 +127,4 @@ class SignIn extends Component {
   }
 }
 
-export default withStyles(useStyles)(SignIn)
+export default withStyles(useStyles)(SignIn);
