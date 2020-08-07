@@ -1,12 +1,11 @@
 const express = require("express");
-
 const path = require("path");
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5000;
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const apiRoute = require("./src/route/api");
+const apiRoute = require("./routes/api");
 // wake
 // const wakeUpDyno = require("./src/route/wakeUpDyno.js");
 // const DYNO_URL = "https://cardbo-info.herokuapp.com/";
@@ -22,10 +21,10 @@ const apiRoute = require("./src/route/api");
 const dbName = "dbCardbo-v2";
 const usrName = "cardbo";
 const usrPswd = "69541";
-mongoURL = `mongodb+srv://${usrName}:${usrPswd}@cardbo-br3ga.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+const mongoURL = `mongodb+srv://${usrName}:${usrPswd}@cardbo-br3ga.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 mongoose.connect(mongoURL, { useNewUrlParser: true });
 
-db = mongoose.connection;
+const db = mongoose.connection;
 db.on("error", (e) => {
   console.log(e);
 });
@@ -34,17 +33,17 @@ db.once("open", () => {
 });
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "../build")));
 app.use("/api", apiRoute);
 
-app.get("/ping", function (req, res) {
+app.get("/ping", (req, res) => {
   return res.send("pong");
 });
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "../build", "index.html"));
+// });
 
 // wake
 // const DYNO_URL = "https://cardbo-info.herokuapp.com/";
@@ -56,4 +55,6 @@ app.get("/*", function (req, res) {
 //   wakeUpDyno(DYNO_URL3); // will start once server starts
 // })
 
-app.listen(port);
+app.listen(port, () => {
+  console.log(`API server is app listening at http://localhost:${port}`);
+});

@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import React from "react";
-import ReactDOM from "react-dom";
 
 const useStyles = makeStyles((theme) => ({
   content: {

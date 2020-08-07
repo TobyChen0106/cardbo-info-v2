@@ -2,14 +2,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import React from "react";
-import ReactDOM from "react-dom";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
-import Chart from "../DashboardRouter/Chart";
-import Deposits from "../DashboardRouter/Deposits";
-import Orders from "../DashboardRouter/Orders";
+import Chart from "./Chart";
+import Deposits from "./Deposits";
+import Orders from "./Orders";
 
 const drawerWidth = 240;
 
@@ -98,21 +97,17 @@ function Dashboard() {
 
   return (
     <Container maxWidth="lg" className={classes.container}>
-      Dashboard
       <Grid container spacing={3}>
-        {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
           <Paper className={fixedHeightPaper}>
             <Chart />
           </Paper>
         </Grid>
-        {/* Recent Deposits */}
         <Grid item xs={12} md={4} lg={3}>
           <Paper className={fixedHeightPaper}>
             <Deposits />
           </Paper>
         </Grid>
-        {/* Recent Orders */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <Orders />

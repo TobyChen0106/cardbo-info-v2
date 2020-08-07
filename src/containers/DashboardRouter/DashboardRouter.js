@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
@@ -9,12 +9,12 @@ import List from "@material-ui/core/List";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 
-import MenuIcon from "@material-ui/icons/Menu";
+// import MenuIcon from "@material-ui/icons/Menu";
 import EjectIcon from "@material-ui/icons/Eject";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+// import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+// import NotificationsIcon from "@material-ui/icons/Notifications";
 import { Route, Switch } from "react-router-dom";
-import { mainListItems, secondaryListItems } from "./listItems";
+import { mainListItems } from "./listItems";
 
 import Home from "../Home/Home";
 import Dashboard from "../Dashboard/Dashboard";
@@ -26,14 +26,14 @@ import CreditCards from "../CreditCards/CreditCards";
 import SignIn from "../sign-up-in/SignIn";
 import SignUp from "../sign-up-in/SignUp";
 import EditPage from "../EditPage/EditPage";
-import ViewPage from "../ViewPage/ViewPage";
+// import ViewPage from "../ViewPage/ViewPage";
 import NewOffer from "../EditPage/NewOffer";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="">
+      <Link color="inherit" href="/">
         Cardbo
       </Link>{" "}
       {new Date().getFullYear()}
@@ -44,7 +44,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-const useStyles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     position: "relative",
@@ -125,76 +125,65 @@ const useStyles = (theme) => ({
   fixedHeight: {
     height: 240,
   },
-});
+}));
 
-class DashboardRouter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      drawerOpen: false,
-    };
-  }
-
-  handleDrawerOpen = () => {
-    this.setState((preState) => {
-      return { drawerOpen: !preState.drawerOpen };
-    });
+const DashboardRouter = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const classes = useStyles();
+  const handleDrawerOpen = () => {
+    setDrawerOpen(!drawerOpen);
   };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <div
+  return (
+    <div className={classes.root}>
+      <div
+        className={clsx(
+          classes.drawerPaper,
+          !drawerOpen && classes.drawerPaperClose
+        )}
+      >
+        <IconButton
+          onClick={handleDrawerOpen}
           className={clsx(
-            classes.drawerPaper,
-            !this.state.drawerOpen && classes.drawerPaperClose
+            classes.menuButton,
+            drawerOpen && classes.menuButtonHidden
           )}
         >
-          <IconButton
-            onClick={this.handleDrawerOpen}
+          <EjectIcon
             className={clsx(
-              classes.menuButton,
-              this.state.drawerOpen && classes.menuButtonHidden
+              classes.iconButton,
+              drawerOpen && classes.iconButtonHidden
             )}
-          >
-            <EjectIcon
-              className={clsx(
-                classes.iconButton,
-                this.state.drawerOpen && classes.iconButtonHidden
-              )}
-            />
-          </IconButton>
-          <div />
-          <List className={classes.listItem}>{mainListItems}</List>
-        </div>
-
-        <main className={classes.content}>
-          {/* <div className={classes.appBarSpacer} /> */}
-          <Container maxWidth="xl" className={classes.container}>
-            <Switch>
-              {/* <Route exact={true} path="*" component={Home} /> */}
-              <Route exact path="/" component={Home} />
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/offers" component={Offers} />
-              <Route exact path="/creditCards" component={CreditCards} />
-              <Route exact path="/banks" component={Banks} />
-              <Route exact path="/users" component={Users} />
-              <Route exact path="/setting" component={Setting} />
-              <Route exact path="/signUp" component={SignUp} />
-              <Route exact path="/signIn" component={SignIn} />
-              <Route exact path="/edit/:id?" component={EditPage} />
-              <Route exact path="/newoffer" component={NewOffer} />
-              <Route exact path="*" component={<div>404 NOT FOUND</div>} />
-            </Switch>
-            <Box pt={4}>
-              <Copyright />
-            </Box>
-          </Container>
-        </main>
+          />
+        </IconButton>
+        <div />
+        <List className={classes.listItem}>{mainListItems}</List>
       </div>
-    );
-  }
-}
 
-export default withStyles(useStyles)(DashboardRouter);
+      <main className={classes.content}>
+        {/* <div className={classes.appBarSpacer} /> */}
+        <Container maxWidth="xl" className={classes.container}>
+          <Switch>
+            {/* <Route exact={true} path="*" component={Home} /> */}
+            <Route exact path="/" component={Home} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/offers" component={Offers} />
+            <Route exact path="/creditCards" component={CreditCards} />
+            <Route exact path="/banks" component={Banks} />
+            <Route exact path="/users" component={Users} />
+            <Route exact path="/setting" component={Setting} />
+            <Route exact path="/signUp" component={SignUp} />
+            <Route exact path="/signIn" component={SignIn} />
+            <Route exact path="/edit/:id?" component={EditPage} />
+            <Route exact path="/newoffer" component={NewOffer} />
+            <Route exact path="*" component={<div>404 NOT FOUND</div>} />
+          </Switch>
+          <Box pt={4}>
+            <Copyright />
+          </Box>
+        </Container>
+      </main>
+    </div>
+  );
+};
+
+export default DashboardRouter;

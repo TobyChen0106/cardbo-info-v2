@@ -5,6 +5,7 @@ const User = require("../models/User");
 const Card = require("../models/Card");
 const Bank = require("../models/Bank");
 const Pay = require("../models/Pay");
+const OfferData = require("../models/OfferData");
 
 router.post("/getUserProfile", (req, res) => {
   const userdata = req.body;
@@ -54,6 +55,17 @@ router.get("/getBanks", (req, res) => {
     if (err) {
       console.log(err);
       res.json(`Server User find ID Error.${String(err)}`);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+router.get("/getAllOffers", (req, res) => {
+  OfferData.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.json(`/geAllOffers error. ${String(err)}`);
     } else {
       res.json(data);
     }

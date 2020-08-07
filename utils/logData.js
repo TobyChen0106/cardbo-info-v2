@@ -7,10 +7,10 @@ const Store = require("../src/models/Store");
 const dbName = "dbCardbo";
 const usrName = "cardbo";
 const usrPswd = "69541";
-mongoURL = `mongodb+srv://${usrName}:${usrPswd}@cardbo-br3ga.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+const mongoURL = `mongodb+srv://${usrName}:${usrPswd}@cardbo-br3ga.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
 mongoose.connect(mongoURL, { useNewUrlParser: true });
-db = mongoose.connection;
+const db = mongoose.connection;
 db.on("error", (e) => {
   console.log(e);
 });
