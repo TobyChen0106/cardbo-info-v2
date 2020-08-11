@@ -11,6 +11,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 // import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 
@@ -32,7 +33,9 @@ const Home = () => {
         <img src="./logo.png" alt="Skytsunami" />
       </div>
       <div className="content">
-        <h1>卡伯 Mr. Cardbo </h1>
+        <Typography variant="h3" color="textPrimary">
+          卡伯 Mr. Cardbo
+        </Typography>
         <div>
           <label htmlFor="icon-button-file" className="label">
             <IconButton href="https://github.com/cardbo" target="_blank">

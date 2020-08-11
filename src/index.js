@@ -1,12 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+  },
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={darkTheme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -43,23 +43,30 @@ function Copyright() {
 }
 
 const drawerWidth = 240;
+const dashBorderHoverClr = "#AFAFAF";
+const dashBackgroundClr = "#131313";
+const backgroundClr = "#202020";
+
+// const dashBackgroundClr = "#247cb8";
+// const backgroundClr = "#0058a3";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     position: "relative",
-    background: "#247cb8",
+    height: "100vh",
+    background: dashBackgroundClr,
   },
+
   menuButton: {
     width: "40px",
     height: "40px",
-
-    border: "3px solid #247cb8",
+    border: `2px solid ${dashBackgroundClr}`,
     "&:hover": {
-      backgroundColor: "#0058a3",
-      border: "3px solid #fff",
+      backgroundColor: backgroundClr,
+      border: `2px solid ${dashBorderHoverClr}`,
     },
-    backgroundColor: "#0058a3",
+    backgroundColor: backgroundClr,
     position: "absolute",
     top: "50%",
     right: "-20px",
@@ -72,14 +79,12 @@ const useStyles = makeStyles((theme) => ({
   iconButtonHidden: {
     transform: "rotate(-90deg)",
   },
-  title: {
-    flexGrow: 1,
-  },
+
   drawerPaper: {
-    "&:hover": {
-      borderRight: "3px solid #fff",
-    },
-    background: "#0058a3",
+    // "&:hover": {
+    //   borderRight: `2px solid ${dashBorderHoverClr}`,
+    // },
+    background: backgroundClr,
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
@@ -89,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   drawerPaperClose: {
-    background: "#0058a3",
+    background: backgroundClr,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -102,28 +107,13 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     overflow: "hidden",
   },
-  appBarSpacer: theme.mixins.toolbar,
+
   content: {
     flexGrow: 1,
-    height: "100vh",
     overflow: "auto",
-  },
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    minHeight: "100vh",
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  paper: {
     padding: theme.spacing(2),
     display: "flex",
-    overflow: "auto",
     flexDirection: "column",
-  },
-  fixedHeight: {
-    height: 240,
   },
 }));
 
@@ -161,26 +151,26 @@ const DashboardRouter = () => {
 
       <main className={classes.content}>
         {/* <div className={classes.appBarSpacer} /> */}
-        <Container maxWidth="xl" className={classes.container}>
-          <Switch>
-            {/* <Route exact={true} path="*" component={Home} /> */}
-            <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/offers" component={Offers} />
-            <Route exact path="/creditCards" component={CreditCards} />
-            <Route exact path="/banks" component={Banks} />
-            <Route exact path="/users" component={Users} />
-            <Route exact path="/setting" component={Setting} />
-            <Route exact path="/signUp" component={SignUp} />
-            <Route exact path="/signIn" component={SignIn} />
-            <Route exact path="/edit/:id?" component={EditPage} />
-            <Route exact path="/newoffer" component={NewOffer} />
-            <Route exact path="*" component={<div>404 NOT FOUND</div>} />
-          </Switch>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
+        {/* <Container maxWidth="xl"> */}
+        <Switch>
+          {/* <Route exact={true} path="*" component={Home} /> */}
+          <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/offers" component={Offers} />
+          <Route exact path="/creditCards" component={CreditCards} />
+          <Route exact path="/banks" component={Banks} />
+          <Route exact path="/users" component={Users} />
+          <Route exact path="/setting" component={Setting} />
+          <Route exact path="/signUp" component={SignUp} />
+          <Route exact path="/signIn" component={SignIn} />
+          <Route exact path="/edit/:id?" component={EditPage} />
+          <Route exact path="/newoffer" component={NewOffer} />
+          {/* <Route exact path="*" component={<div>404 NOT FOUND</div>} /> */}
+        </Switch>
+        <Box pt={2}>
+          <Copyright />
+        </Box>
+        {/* </Container> */}
       </main>
     </div>
   );

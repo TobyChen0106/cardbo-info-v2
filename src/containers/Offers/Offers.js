@@ -4,55 +4,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom";
 // import Link from "@material-ui/core/Link";
 import ReactLoading from "react-loading";
-// import Typography from "@material-ui/core/Typography";
+import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import InfoCard from "../../components/InfoCard";
+import OfferTable from "./OfferTable/OfferTable";
+
 import "./Offers.css";
 
 import { OffersAgent } from "../../agent";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-  },
-  fixedHeight: {
-    height: 240,
-  },
-  dataListContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  addButton: {
-    width: "100px",
-    height: "100px",
-    position: "absolute",
-    right: "50px",
-    bottom: "50px",
-    border: "solid 10px #0058a3",
-  },
-  addButtonIcon: {
-    width: "100px",
-    height: "100px",
-    fill: "#fff",
-  },
-}));
+const useStyles = makeStyles((theme) => ({}));
 
 const Offers = () => {
   const [offerList, setOfferList] = useState([]);
@@ -110,9 +72,13 @@ const Offers = () => {
   }
 
   return (
-    <div className={classes.dataListContainer}>
-      {dataList}
-      <NavLink
+    <>
+      {/* {dataList} */}
+      <Typography variant="h5" color="textPrimary">
+        優惠：
+      </Typography>
+      <OfferTable offerList={offerList} />
+      {/* <NavLink
         to="/newoffer"
         style={{ textDecoration: "none" }}
         target="_blank"
@@ -120,8 +86,8 @@ const Offers = () => {
         <IconButton onClick={handleNewOffer} className={classes.addButton}>
           <AddCircleIcon className={classes.addButtonIcon} />
         </IconButton>
-      </NavLink>
-    </div>
+      </NavLink> */}
+    </>
   );
 };
 

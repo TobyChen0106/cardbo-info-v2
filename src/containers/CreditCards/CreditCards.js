@@ -2,9 +2,8 @@ import { lighten, withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import React, { Component, forwardRef } from "react";
-import ReactDOM from "react-dom";
+
 import ImageUploader from "react-images-upload";
-import axios from "axios";
 
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
